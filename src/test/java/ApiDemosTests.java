@@ -33,6 +33,7 @@ public class ApiDemosTests {
         Thread.sleep(2000);
     }
 
+
     @AfterMethod
     public void tearDown() {
         driver.quit();
