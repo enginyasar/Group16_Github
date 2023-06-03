@@ -140,11 +140,9 @@ public class ApiDemosTests {
     @Test(priority = 7)
     public void eighthTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        //driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
-        //driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
-        //driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Views\")")).click();
-        Activity activity = new Activity("com.touchboarder.android.api.demos", "com.example.android.apis.ApiDemos");
-        driver.startActivity(activity);
+        driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Views\")")).click();
         Thread.sleep(3000);
         boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
                 "left", 100, "top", 100, "width", 200, "height", 600,
