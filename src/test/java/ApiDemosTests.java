@@ -1,5 +1,6 @@
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
@@ -51,7 +52,7 @@ public class ApiDemosTests {
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("className(\"android.widget.CheckBox\").instance(4)")).click();
     }
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     public void secondTest() throws MalformedURLException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -65,7 +66,7 @@ public class ApiDemosTests {
         actions.sendKeys(driver.findElement(By.id("android:id/edit")), "cat").perform();
     }
 
-    @Test (priority = 2)
+    @Test(priority = 2)
     public void thirdTest() throws MalformedURLException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -81,7 +82,7 @@ public class ApiDemosTests {
 
     }
 
-    @Test (priority = 3)
+    @Test(priority = 3)
     public void fourthTest() throws MalformedURLException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -93,7 +94,7 @@ public class ApiDemosTests {
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Wallpaper\")")).click();
     }
 
-    @Test (priority = 4)
+    @Test(priority = 4)
     public void fifthTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -108,7 +109,7 @@ public class ApiDemosTests {
         Thread.sleep(2000);
     }
 
-    @Test (priority = 5)
+    @Test(priority = 5)
     public void sixthTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -124,7 +125,7 @@ public class ApiDemosTests {
         Thread.sleep(2000);
     }
 
-    @Test (priority = 6)
+    @Test(priority = 6)
     public void seventhTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
@@ -134,15 +135,17 @@ public class ApiDemosTests {
                 ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"))"));
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"WebView\")")).click();
         Thread.sleep(2000);
-
     }
 
-    @Test (priority = 7)
-    public void eighthTest() throws MalformedURLException {
+    @Test(priority = 7)
+    public void eighthTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
-        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
-        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Views\")")).click();
+        //driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
+        //driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
+        //driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Views\")")).click();
+        Activity activity = new Activity("com.touchboarder.android.api.demos", "com.example.android.apis.ApiDemos");
+        driver.startActivity(activity);
+        Thread.sleep(3000);
         boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
                 "left", 100, "top", 100, "width", 200, "height", 600,
                 "direction", "down",
@@ -150,4 +153,12 @@ public class ApiDemosTests {
         ));
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"WebView\")")).click();
     }
+
+    @Test(priority = 8)
+    public void ninethTest() throws MalformedURLException, InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        Activity activity = new Activity("com.touchboarder.android.api.demos", "com.example.android.apis.preference.PreferenceDependencies");
+        driver.startActivity(activity);
+        Thread.sleep(3000);
     }
+}

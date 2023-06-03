@@ -13,8 +13,8 @@ public class GeneralStore extends BaseTestGeneralStore {
     public void firstTest() throws MalformedURLException, InterruptedException {
         driver.findElement(By.id("android:id/text1")).click();
         driver.findElement(AppiumBy.androidUIAutomator
-                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"))"));
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Argentina']")).click();
+                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Turkey\"))"));
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Turkey']")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
         driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
@@ -24,8 +24,8 @@ public class GeneralStore extends BaseTestGeneralStore {
     public void secondTest() throws MalformedURLException {
         driver.findElement(By.id("android:id/text1")).click();
         driver.findElement(AppiumBy.androidUIAutomator
-                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Turkey\"))"));
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Turkey']")).click();
+                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"))"));
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Argentina']")).click();
         // driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
         driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
