@@ -2,6 +2,8 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
 import org.openqa.selenium.DeviceRotation;
@@ -172,6 +174,18 @@ public class ApiDemosTests {
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Accessibility\")")).click();
         Thread.sleep(3000);
     }
+    @Test(priority = 10)
+    public void eleventhTest() throws MalformedURLException, InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Accessibility\")")).click();
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        Thread.sleep(3000);
+        driver.pressKey(new KeyEvent(AndroidKey.HOME));
+        Thread.sleep(3000);
+    }
+
 }
 
 
