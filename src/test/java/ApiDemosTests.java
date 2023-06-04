@@ -4,6 +4,7 @@ import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Driver;
 import java.time.Duration;
 
 public class ApiDemosTests {
@@ -159,4 +161,18 @@ public class ApiDemosTests {
         driver.startActivity(activity);
         Thread.sleep(3000);
     }
+
+    @Test(priority = 9)
+    public void tenthTest() throws MalformedURLException, InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
+        DeviceRotation deviceRotation = new DeviceRotation(0,0,90);
+        driver.rotate(deviceRotation);
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Accessibility\")")).click();
+        Thread.sleep(3000);
+    }
 }
+
+
+
