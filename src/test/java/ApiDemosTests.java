@@ -184,6 +184,7 @@ public class ApiDemosTests {
         Thread.sleep(3000);
         driver.pressKey(new KeyEvent(AndroidKey.HOME));
         Thread.sleep(3000);
+
     }
 
 }
