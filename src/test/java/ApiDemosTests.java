@@ -5,12 +5,11 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import org.openqa.selenium.By;
-import org.openqa.selenium.DeviceRotation;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -148,14 +147,17 @@ public class ApiDemosTests {
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Views\")")).click();
         Thread.sleep(3000);
-        boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                "left", 100, "top", 100, "width", 200, "height", 600,
-                "direction", "down",
-                "percent", 5.0
-        ));
+        boolean canScrollMore = true;
+        while (canScrollMore) {
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left", 100, "top", 100, "width", 200, "height", 200,
+                    "direction", "down",
+                    "percent", 3.0
+            ));
+        }
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"WebView\")")).click();
-    }
 
+    }
     @Test(priority = 8)
     public void ninethTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
