@@ -1,4 +1,4 @@
-package GeneralStore;
+package generalStore;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
