@@ -1,4 +1,4 @@
-package GeneralStore;
+package GeneralStore_MyTheresa;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.List;
 
 public class GeneralStore1 extends BaseTestGeneralStore {
@@ -35,21 +36,36 @@ public class GeneralStore1 extends BaseTestGeneralStore {
         System.out.println("toastMessage = " + toastMessage);
         Assert.assertEquals(toastMessage, "Please enter your name");
     }
-    @Test //sonradan çalışmadı
+    @Test //ÖNEMLİ : Scroll her halukarda en sona gidiyor eğer click edilecek element yukarıda kalırsa bulamıyor kod çalışmıyor.
     public void thirdTest() throws MalformedURLException {
         driver.findElement(By.id("android:id/text1")).click();
-        boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
-                "left", 100, "top", 100, "width", 200, "height", 200,
-                "direction", "down",
-                "percent", 10.0
-        ));
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Argentina']")).click();
+        boolean canScrollMore = true;
+        while (canScrollMore) {
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left", 100, "top", 100, "width", 200, "height", 600,
+                    "direction", "down",
+                    "percent", 3.0
+            ));
+        }
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Zambia']")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
         driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
         driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
     }
 
-    @Test //ÇALIŞMADI
+    @Test
+    public void sixthTest() throws MalformedURLException {
+        driver.findElement(By.id("android:id/text1")).click();
+        driver.findElement(AppiumBy.androidUIAutomator
+                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"))"));
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Argentina']")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
+        driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        driver.findElement(By.xpath("(//*[@resource-id='com.androidsample.generalstore:id/productAddCart'])[1]"));
+    }
+
+    @Test //ÇALIŞMADI BAKACAĞIM. KOPYALA YAPIŞTIR KAYNAKLI SORUNLAR VAR. DÜZELECEK
     public void fourthTest() throws MalformedURLException, InterruptedException {
         driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
         driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
@@ -81,6 +97,33 @@ public class GeneralStore1 extends BaseTestGeneralStore {
             }
             if (i==1) break;
         }
+
+    }
+
+
+    @Test //HYBRID
+    public void fifthTest() throws MalformedURLException, InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(By.id("android:id/text1")).click();
+        driver.findElement(AppiumBy.androidUIAutomator
+                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"))"));
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Argentina']")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
+        driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"ADD TO CART\")")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
+        driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
+        Thread.sleep(3000);
+        //Set<String> contextList = driver.getContextHandles();
+        //for (String each : contextList) {
+        //System.out.println(each);}
+        driver.context("WEBVIEW_com.androidsample.generalstore");
+        Thread.sleep(3000);
+        driver.findElement(By.name("q")).sendKeys("apple" + Keys.ENTER);
+        Thread.sleep(3000);
+
+        //driver.context("NATIVE_APP");
 
     }
 }

@@ -1,4 +1,4 @@
-package GeneralStore;
+package GeneralStore_MyTheresa;
 
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;

@@ -1,4 +1,4 @@
-package GeneralStore;
+package GeneralStore_MyTheresa;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -18,9 +18,12 @@ public class BaseTestGeneralStore {
                 .setAppPackage("com.androidsample.generalstore")
                 .setAppActivity("com.androidsample.generalstore.SplashActivity")
                 .setUdid("emulator-5554")
+                //.setUdid("192.168.231.101:5555")
                 .setAutomationName("uiautomator2")
                 .setNoReset(false)
                 .setNewCommandTimeout(Duration.ofMinutes(10));
+        options.setChromedriverExecutable("C://Users//yasar//chromedriver_win32//chromedriver.exe");
+        //options.setChromedriverExecutable("C://Users//yasar//chromedriver_win32_2//chromedriver.exe");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options); //the default Appium server address and port
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
