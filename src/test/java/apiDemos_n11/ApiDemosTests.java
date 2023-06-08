@@ -1,3 +1,5 @@
+package apiDemos_n11;
+
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
@@ -70,7 +72,7 @@ public class ApiDemosTests {
     }
 
     @Test(priority = 2)
-    public void thirdTest() throws MalformedURLException {
+    public void thirdTest() throws MalformedURLException, InterruptedException {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.findElement(By.id("com.touchboarder.android.api.demos:id/buttonDefaultPositive")).click();
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"API Demos\")")).click();
@@ -81,6 +83,7 @@ public class ApiDemosTests {
                 "direction", "down",
                 "percent", 5.0
         ));
+        Thread.sleep(3000);
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("text(\"Wallpaper\")")).click();
 
     }
