@@ -1,4 +1,4 @@
-package GeneralStore_MyTheresa;
+package GeneralStore;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
