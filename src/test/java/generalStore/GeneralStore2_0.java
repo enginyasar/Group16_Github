@@ -25,18 +25,13 @@ public class GeneralStore2_0 extends BaseTestGeneralStore {
         generalStorePage.goToWebForPurchase();
         Thread.sleep(3000);
     }
-    @Test //HENÜZ PAGE OBJECT MODEL UYGULANMADI
+    @Test
     public void secondTest() throws MalformedURLException {
-        driver.findElement(By.id("android:id/text1")).click();
-        driver.findElement(AppiumBy.androidUIAutomator
-                ("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Turkey\"))"));
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Turkey']")).click();
-        // driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Engin");
-        driver.findElement(By.id("com.androidsample.generalstore:id/radioMale")).click();
-        driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop")).click();
-        String toastMessage = driver.findElement(By.xpath("(//android.widget.Toast)[1]")).getAttribute("name");
-        System.out.println("toastMessage = " + toastMessage);
-        Assert.assertEquals(toastMessage, "Please enter your name");
+        GeneralStorePage generalStorePage = new GeneralStorePage(driver);
+        generalStorePage.setGenderField("Male");
+        generalStorePage.setCountryField("Argentina");
+        generalStorePage.submitForm();
+        generalStorePage.verifyToastMessageIs("Please enter your name");
     }
 
 

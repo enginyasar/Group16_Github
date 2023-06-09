@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import utilities.AndroidActions;
 
 public class GeneralStorePage extends AndroidActions {
@@ -80,7 +81,14 @@ public class GeneralStorePage extends AndroidActions {
         visitToWebSite.click();
     }
 
+    public void verifyToastMessageIs(String text){
+        String toastMessage = driver.findElement(By.xpath("(//android.widget.Toast)[1]")).getAttribute("name");
+        System.out.println("toastMessage = " + toastMessage);
+        Assert.assertEquals(toastMessage,text);
+    }
+
 }
+
 
 
 
